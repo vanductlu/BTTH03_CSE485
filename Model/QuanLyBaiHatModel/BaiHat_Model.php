@@ -1,49 +1,41 @@
 <?php
-require_once dirname(__FILE__, 2) . '/Database.php';
 
-class Baihat_Model {
-    private $db;
-    private $tableName;
+class BaiHat {
+  private $id;
+  private $tenBaiHat;
+  private $caSi;
+  private $idTheLoai;
 
-    public function __construct() {
-        $this->db = new Database();
-        $this->tableName = 'BaiHat';
-    }
+  public function getId() {
+    return $this->id;
+  }
 
-    public function save($tenbaihat, $casi, $idtheloai) {
-        $query = "INSERT INTO $this->tableName (tenBaiHat, caSi, idTheLoai) VALUES ('$tenbaihat', '$casi', $idtheloai)";
-        return $this->db->executeNonQuery($query);
-    }
+  public function setId($id) {
+    $this->id = $id;
+  }
 
-    public function getById($id) {
-        $query = "SELECT * FROM $this->tableName WHERE id = $id";
-        return $this->db->executeQuery($query);
-    }
+  public function getTenBaiHat() {
+    return $this->tenBaiHat;
+  }
 
-    public function getByTheLoai($idtheloai) {
-        $query = "SELECT * FROM $this->tableName WHERE idTheLoai = $idtheloai";
-        return $this->db->executeQuery($query);
-    }
+  public function setTenBaiHat($tenBaiHat) {
+    $this->tenBaiHat = $tenBaiHat;
+  }
 
-    public function update($baihat) {
-        $id = $baihat->getId();
-        $tenbaihat = $baihat->getTenBaiHat();
-        $casi = $baihat->getCaSi();
-        $idtheloai = $baihat->getIdTheLoai();
+  public function getCaSi() {
+    return $this->caSi;
+  }
 
-        $query = "UPDATE $this->tableName SET tenBaiHat = '$tenbaihat', caSi = '$casi', idTheLoai = $idtheloai WHERE id = $id";
-        return $this->db->executeNonQuery($query);
-    }
+  public function setCaSi($caSi) {
+    $this->caSi = $caSi;
+  }
 
-    public function delete($baihat) {
-        $id = $baihat->getId();
-        $query = "DELETE FROM $this->tableName WHERE id = $id";
-        return $this->db->executeNonQuery($query);
-    }
+  public function getIdTheLoai() {
+    return $this->idTheLoai;
+  }
 
-    public function deleteByTheLoai($idtheloai) {
-        $query = "DELETE FROM $this->tableName WHERE idTheLoai = $idtheloai";
-        return $this->db->executeNonQuery($query);
-    }
+  public function setIdTheLoai($idTheLoai) {
+    $this->idTheLoai = $idTheLoai;
+  }
 }
 ?>
